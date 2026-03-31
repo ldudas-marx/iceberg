@@ -67,6 +67,19 @@ public class TestProjection {
         Expressions.notEqual("id", 105));
   }
 
+  private static List<UnboundPredicate<?>> predicatesWithUpperCaseReference() {
+    return List.of(
+            Expressions.notNull("ID"),
+            Expressions.isNull("ID"),
+            Expressions.lessThan("ID", 100),
+            Expressions.lessThanOrEqual("ID", 101),
+            Expressions.greaterThan("ID", 102),
+            Expressions.greaterThanOrEqual("ID", 103),
+            Expressions.equal("ID", 104),
+            Expressions.notEqual("ID", 105));
+  }
+
+
   private static List<UnboundPredicate<?>> predicatesWithTransform() {
     return List.of(
         Expressions.notNull(Expressions.truncate("id", 1)),
@@ -149,7 +162,7 @@ public class TestProjection {
   }
 
   @ParameterizedTest
-  @MethodSource("predicatesWithReference")
+  @MethodSource("predicatesWithUpperCaseReference")
   public void testCaseInsensitiveIdentityProjection(UnboundPredicate<?> predicate) {
     PartitionSpec spec = PartitionSpec.builderFor(SCHEMA).identity("id").build();
 
@@ -207,7 +220,7 @@ public class TestProjection {
   }
 
   @ParameterizedTest
-  @MethodSource("predicatesWithReference")
+  @MethodSource("predicatesWithUpperCaseReference")
   public void testCaseInsensitiveStrictIdentityProjection(UnboundPredicate<?> predicate) {
 
     PartitionSpec spec = PartitionSpec.builderFor(SCHEMA).identity("id").build();
