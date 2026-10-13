@@ -81,8 +81,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 public class TestParquetVectorizedReads extends AvroDataTestBase {
-  private static final int NUM_ROWS = 20;
-  static final int BATCH_SIZE = 10;
+  private static final int NUM_ROWS = 200_000;
+  static final int BATCH_SIZE = 10_000;
 
   private static final String PLAIN = "PLAIN";
   private static final List<String> GOLDEN_FILE_ENCODINGS =
